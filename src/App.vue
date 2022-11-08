@@ -1,13 +1,10 @@
-<!--<template>-->
-<!--  <nav>-->
-<!--    <router-link to="/">Home</router-link> |-->
-<!--    <router-link to="/about">About</router-link>-->
-<!--  </nav>-->
-<!--  <router-view />-->
-<!--</template>-->
 <template>
+  <nav>
+    <router-link to="/">Home</router-link> |
+    <router-link to="/about">About</router-link>
+  </nav>
   <div class="justify-center flex bg-yellow-300 items-center h-screen">
-    <div class="text-4xl">Hello 👋🏼</div>
+    <router-view />
   </div>
 </template>
 
