@@ -1,9 +1,6 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <div class="bg-yellow-300">
+    <main-navigation />
+  <div class="bg-gray-100">
     <div class="container mx-auto py-8">
       <router-view />
     </div>
@@ -11,7 +8,10 @@
 </template>
 
 <script>
+import MainNavigation from "@/components/MainNavigation.vue";
+
 export default {
   name: "App",
+  components: { MainNavigation }
 };
 </script>
