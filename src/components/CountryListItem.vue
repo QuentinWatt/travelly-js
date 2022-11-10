@@ -1,15 +1,16 @@
 <template>
   <div class="border border-black rounded p-3 flex justify-between items-center">
-    <div>
+    <div v-if="country">
       <span class="font-bold text mr-2">
-        {{ name }}
+        {{ country.name.official }}
       </span>
       <span>
-        {{ region }}
+        {{ country.region }}
       </span>
     </div>
     <div>
       <button
+        @click="addToList"
         class="rounded bg-black text-yellow-300 flex items-center justify-center h-8 w-8"
       >
         +
@@ -22,14 +23,15 @@
 export default {
   name: "CountryListItem",
   props: {
-    name: {
-      type: String,
-      default: "",
+    country: {
+      type: Object,
+      default: null,
     },
-    region: {
-      type: String,
-      default: "",
-    }
   },
+  methods: {
+    addToList(){
+      this.$store.dispatch('AddCountry', this.country)
+    }
+  }
 };
 </script>

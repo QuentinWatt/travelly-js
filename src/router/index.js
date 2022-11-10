@@ -8,10 +8,10 @@ const routes = [
     component: CountriesView,
   },
   {
-    path: "/about",
-    name: "about",
+    path: "/travel-list",
+    name: "travel-list",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+      import(/* webpackChunkName: "about" */ "../views/TravelList.vue"),
   },
 ];
 
