@@ -3,8 +3,10 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
   </nav>
-  <div class="justify-center flex bg-yellow-300 items-center h-screen">
-    <router-view />
+  <div class="bg-yellow-300">
+    <div class="container mx-auto py-8">
+      <router-view />
+    </div>
   </div>
 </template>
 
