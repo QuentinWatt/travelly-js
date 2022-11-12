@@ -15,16 +15,20 @@ const search = {
     },
   },
   actions: {
-    searchCountry({commit}, country) {
-      commit("SET_SEARCH_RESULTS", [])
+    searchCountry({commit}, query) {
+      commit("SET_ERRORS", null);
       axios
-        .get(`https://restcountries.com/v3.1/name/${country}`)
+        .get(`https://restcountries.com/v3.1/name/${query}`)
         .then((response) => {
           commit("SET_SEARCH_RESULTS", response.data)
         })
         .catch((error) => {
+          commit("SET_SEARCH_RESULTS", [])
           commit("SET_ERRORS", error);
         })
+    },
+    clearSearchResults({commit}){
+      commit("SET_SEARCH_RESULTS", [])
     }
   },
   getters: {}

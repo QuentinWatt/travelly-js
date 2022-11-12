@@ -1,39 +1,44 @@
 <template>
-  <form @submit.prevent="doSearch" class="flex w-full">
+  <form @submit.prevent class="flex w-full">
     <input
       type="text"
       v-model="query"
-      class="border py-2 px-3 rounded bg-white w-full mr-3"
-      @focus="toggleList"
-      @blur="toggleList"
+      class="border py-2 px-3 rounded bg-white w-full"
+      @focus="handleSearchResults"
+      @blur="handleSearchResults"
+      @keyup="handleSearch"
+      placeholder="Search for a country..."
     >
-    <button
-      type="submit"
-      class="px-3 rounded bg-blue-400 text-white"
-    >
-      Search
-    </button>
   </form>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   name: "SearchCountries",
   data() {
     return {
-      query: ''
+      query: "",
     }
   },
   methods:{
-    doSearch(){
-      this.$store.dispatch("search/searchCountry", this.query)
-    },
-    toggleList(){
+    ...mapActions("search",[
+      "clearSearchResults",
+      "searchCountry"
+    ]),
+    handleSearch(){
       if(this.query.length > 0){
-        this.$emit('showSearch')
+        this.$emit("showSearch")
+        this.searchCountry(this.query)
       }
       else {
-        this.$emit('hideSearch')
+        this.$emit("hideSearch")
+      }
+    },
+    handleSearchResults(){
+      if(!this.query.length <= 0){
+        this.clearSearchResults()
       }
     }
   }

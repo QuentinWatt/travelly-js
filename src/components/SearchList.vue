@@ -6,6 +6,15 @@
       :country="country"
       class="mt-3"
     />
+
+    <div
+      v-if="errors"
+      class="mt-3 flex justify-center"
+    >
+      <div class="p-3 bg-gray-100 rounded">
+        No matching results. Please try again.
+      </div>
+    </div>
   </div>
 </template>
 
@@ -18,7 +27,8 @@ export default {
   components: { CountryListItem },
   computed:{
     ...mapState('search',[
-      'results'
+      'results',
+      'errors',
     ])
   }
 };
