@@ -4,6 +4,7 @@
     <search-countries
       @showSearch="showSearchList"
       @hideSearch="hideSearchList"
+      class="mt-3"
     />
     <search-list
       v-if="useSearchList"
