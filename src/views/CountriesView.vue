@@ -5,13 +5,11 @@
       @showSearch="showSearchList"
       @hideSearch="hideSearchList"
     />
-    <countries-list
+    <search-list
       v-if="useSearchList"
-      :countries="$store.state.search.results"
     />
     <countries-list
       v-else
-      :countries="$store.state.countries.list"
     />
   </div>
 </template>
@@ -19,22 +17,17 @@
 <script>
 import CountriesList from "@/components/CountriesList.vue";
 import SearchCountries from "@/components/SearchCountries.vue";
+import SearchList from "@/components/SearchList.vue";
 
 export default {
   name: "CountriesView",
-  components: { SearchCountries, CountriesList },
+  components: { SearchList, SearchCountries, CountriesList },
   data(){
     return {
       useSearchList: false
     }
   },
-  mounted() {
-    this.$store.dispatch("fetchAllCountries");
-  },
   methods: {
-    toggleSearchList(){
-      this.useSearchList = !this.useSearchList
-    },
     showSearchList(){
       this.useSearchList = true
     },

@@ -26,7 +26,7 @@ export default {
   },
   methods:{
     doSearch(){
-      this.$store.dispatch("searchCountry", this.query)
+      this.$store.dispatch("search/searchCountry", this.query)
     },
     toggleList(){
       if(this.query.length > 0){

@@ -12,6 +12,9 @@ import MainNavigation from "@/components/MainNavigation.vue";
 
 export default {
   name: "App",
-  components: { MainNavigation }
+  components: { MainNavigation },
+  mounted() {
+    this.$store.dispatch("countries/fetchAllCountries");
+  }
 };
 </script>

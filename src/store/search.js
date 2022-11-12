@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const search = {
+  namespaced: true,
   state:{
     results: [],
     errors: null,
@@ -15,6 +16,7 @@ const search = {
   },
   actions: {
     searchCountry({commit}, country) {
+      commit("SET_SEARCH_RESULTS", [])
       axios
         .get(`https://restcountries.com/v3.1/name/${country}`)
         .then((response) => {

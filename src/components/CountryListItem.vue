@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     addToList(){
-      this.$store.dispatch('AddCountry', this.country)
+      this.$store.dispatch('itinerary/AddCountry', this.country)
     }
   }
 };
