@@ -2,10 +2,17 @@
   <div class="bg-white p-5 rounded">
     <h1 class="font-bold text-2xl">Countries</h1>
     <search-countries
-      @focus="hideList"
-      @blur="showList"
+      @showSearch="showSearchList"
+      @hideSearch="hideSearchList"
     />
-    <countries-list v-if="showCountriesList" />
+    <countries-list
+      v-if="useSearchList"
+      :countries="$store.state.search.results"
+    />
+    <countries-list
+      v-else
+      :countries="$store.state.countries.list"
+    />
   </div>
 </template>
 
@@ -18,19 +25,22 @@ export default {
   components: { SearchCountries, CountriesList },
   data(){
     return {
-      showCountriesList: true
+      useSearchList: false
     }
   },
   mounted() {
     this.$store.dispatch("fetchAllCountries");
   },
   methods: {
-    hideList(){
-      this.showCountriesList = false
+    toggleSearchList(){
+      this.useSearchList = !this.useSearchList
     },
-    showList(){
-      this.showCountriesList = true
-    }
+    showSearchList(){
+      this.useSearchList = true
+    },
+    hideSearchList(){
+      this.useSearchList = false
+    },
   }
 };
 </script>

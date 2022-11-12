@@ -15,10 +15,11 @@ import CountryListItem from "@/components/CountryListItem.vue";
 export default {
   name: "CountriesList",
   components: { CountryListItem },
-  computed: {
-    countries() {
-      return this.$store.state.countries.list;
-    },
-  },
+  props: {
+    countries: {
+      type: Array,
+      default: () => [],
+    }
+  }
 };
 </script>

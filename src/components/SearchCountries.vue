@@ -4,7 +4,8 @@
       type="text"
       v-model="query"
       class="border py-2 px-3 rounded bg-white w-full mr-3"
-      v-bind="$attrs"
+      @focus="toggleList"
+      @blur="toggleList"
     >
     <button
       type="submit"
@@ -26,6 +27,14 @@ export default {
   methods:{
     doSearch(){
       this.$store.dispatch("searchCountry", this.query)
+    },
+    toggleList(){
+      if(this.query.length > 0){
+        this.$emit('showSearch')
+      }
+      else {
+        this.$emit('hideSearch')
+      }
     }
   }
 };
