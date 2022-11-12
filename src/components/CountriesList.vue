@@ -2,7 +2,7 @@
   <div>
     <country-list-item
       v-for="country in countries"
-      :key="country.name.official"
+      :key="country.name.common"
       :country="country"
       class="mt-3"
     />
@@ -15,10 +15,11 @@ import CountryListItem from "@/components/CountryListItem.vue";
 export default {
   name: "CountriesList",
   components: { CountryListItem },
-  computed: {
-    countries() {
-      return this.$store.state.countries.list;
-    },
-  },
+  props: {
+    countries: {
+      type: Array,
+      default: () => [],
+    }
+  }
 };
 </script>

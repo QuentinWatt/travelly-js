@@ -2,7 +2,7 @@
   <div class="border border-black rounded p-3 flex justify-between items-center">
     <div v-if="country">
       <span class="font-bold text mr-2">
-        {{ country.name.official }}
+        {{ country.name.common }}
       </span>
       <span>
         {{ country.region }}
