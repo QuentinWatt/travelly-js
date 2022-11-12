@@ -1,6 +1,6 @@
 <template>
   <div class="h-16 border-b flex items-center">
-    <nav class="container mx-auto flex justify-between items-center">
+    <nav class="container mx-auto px-3 flex justify-between items-center">
       <div>
         <router-link
           to="/"

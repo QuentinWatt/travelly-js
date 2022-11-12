@@ -2,7 +2,7 @@
   <div>
     <country-list-item
       v-for="country in countries"
-      :key="country.name.official"
+      :key="country.name.common"
       :country="country"
       class="mt-3"
     />
