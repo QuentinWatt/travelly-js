@@ -1,4 +1,5 @@
 const itinerary = {
+  namespaced: true,
   state: {
     list: [],
   },

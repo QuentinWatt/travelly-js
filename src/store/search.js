@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const search = {
+  namespaced: true,
   state:{
     results: [],
     errors: null,
