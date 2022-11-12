@@ -4,13 +4,20 @@ const itinerary = {
     list: [],
   },
   mutations: {
-    ADD_COUNTRY(state, country){
-      state.list.push(country);
+    SET_ITINERARY(state, newList){
+      state.list = newList
     },
   },
   actions: {
-    AddCountry({ commit }, country){
-      commit('ADD_COUNTRY', country)
+    AddCountry({ state, commit }, country){
+      let list = state.list
+      list.push(country)
+      commit('SET_ITINERARY', list)
+    },
+    RemoveFromList({ state, commit }, index){
+      let list = state.list
+      list.splice(index, 1)
+      commit('SET_ITINERARY', state.list)
     }
   },
   getters: {},

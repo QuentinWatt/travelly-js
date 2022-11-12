@@ -10,10 +10,18 @@
     </div>
     <div>
       <button
+        v-if="!myList"
         @click="addToList"
-        class="rounded bg-black text-yellow-300 flex items-center justify-center h-8 w-8"
+        class="rounded bg-blue-500 text-white flex items-center justify-center h-8 w-8"
       >
         +
+      </button>
+      <button
+        v-if="myList"
+        @click="remove"
+        class="rounded bg-red-500 text-white flex items-center justify-center h-8 w-8"
+      >
+        -
       </button>
     </div>
   </div>
@@ -25,12 +33,22 @@ export default {
   props: {
     country: {
       type: Object,
-      default: null,
     },
+    myList: {
+      type: Boolean,
+      default: false,
+    },
+    arrayIndex:{
+      type: Number,
+      default: null,
+    }
   },
   methods: {
     addToList(){
       this.$store.dispatch('itinerary/AddCountry', this.country)
+    },
+    remove(){
+      this.$store.dispatch('itinerary/RemoveFromList', this.arrayIndex)
     }
   }
 };
