@@ -11,7 +11,7 @@ const routes = [
     path: "/travel-list",
     name: "travel-list",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/TravelList.vue"),
+      import(/* webpackChunkName: "about" */ "../views/ItineraryView.vue"),
   },
 ];
 
