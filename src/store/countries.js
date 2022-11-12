@@ -5,7 +5,7 @@ const countries = {
   state: {
     list: [],
     errors: null,
-    currentPage: 0,
+    currentPage: 1,
     perPage: 10,
   },
   mutations: {
@@ -30,14 +30,20 @@ const countries = {
           commit("SET_ERRORS", error);
         });
     },
-    nextPage({state,commit}){
-      const currentPage = state.currentPage + 1
+    nextPage({state, getters ,commit}){
+      let currentPage = state.currentPage
+      if(currentPage < getters.lastPageNumber){
+        currentPage++
+      }
       commit("SET_PAGE_INDEX", {
         currentPage
       })
     },
     previousPage({state, commit}){
-      const currentPage = state.currentPage -1
+      let currentPage = state.currentPage
+      if(currentPage > 1){
+        currentPage--
+      }
       commit("SET_PAGE_INDEX", {
         currentPage
       })
@@ -45,7 +51,7 @@ const countries = {
   },
   getters: {
     getPageItems: (state) => {
-      const start = state.currentPage * state.perPage
+      const start = (state.currentPage - 1) * state.perPage
       return state.list.slice(start, start + state.perPage)
     },
     lastPageNumber: (state) => {
