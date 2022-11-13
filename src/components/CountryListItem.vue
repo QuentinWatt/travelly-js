@@ -102,7 +102,7 @@ export default {
       this.$store.dispatch('itinerary/AddCountry', this.country)
 
       // Only to fake some user interactivity
-      setInterval(() => {
+      setTimeout(() => {
         this.loading = false
       }, 300)
     },
@@ -110,7 +110,7 @@ export default {
       this.loading = true
 
       // Only to fake some user interactivity
-      setInterval(() => {
+      setTimeout(() => {
         this.$store.dispatch('itinerary/RemoveFromList', this.arrayIndex)
         this.loading = false
       }, 300)
