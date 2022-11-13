@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white p-5 rounded">
+  <div class="bg-white p-5 rounded border">
     <h1 class="text-2xl font-bold">Your Travel List</h1>
     <div
       v-for="(country, index) in list"

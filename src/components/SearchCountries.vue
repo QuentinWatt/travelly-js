@@ -10,10 +10,6 @@
       placeholder="Search for a country..."
     >
   </form>
-  <div>
-    test:
-    <font-awesome-icon icon="fa-brands fa-linkedin" />
-  </div>
 </template>
 
 <script>
