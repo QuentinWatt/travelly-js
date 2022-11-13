@@ -59,15 +59,15 @@ export default {
       this.loading = true
       this.$store.dispatch('itinerary/AddCountry', this.country)
 
-      setInterval(() => {
+      setTimeout(() => {
         this.loading = false
       }, 300)
     },
     remove(){
       this.loading = true
-      this.$store.dispatch('itinerary/RemoveFromList', this.arrayIndex)
-
-      setInterval(() => {
+      setTimeout(() => {
+        console.log('test')
+        this.$store.dispatch('itinerary/RemoveFromList', this.arrayIndex)
         this.loading = false
       }, 300)
     }
