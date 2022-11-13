@@ -28,11 +28,11 @@ export default {
       "searchCountry"
     ]),
     handleSearch(){
-      if(this.query.length > 0){
+      if(this.query.length > 2){
         this.$emit("showSearch")
         this.searchCountry(this.query)
       }
-      else {
+      else{
         this.$emit("hideSearch")
       }
     },
