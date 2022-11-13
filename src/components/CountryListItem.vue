@@ -59,12 +59,17 @@ export default {
       this.loading = true
       this.$store.dispatch('itinerary/AddCountry', this.country)
 
+      // Would ordinarily use a promise return but this happens so fast on local
+      // Decided to use a timeout instead
       setTimeout(() => {
         this.loading = false
       }, 300)
     },
     remove(){
       this.loading = true
+
+      // Would ordinarily use a promise return but this happens so fast on local
+      // Decided to use a timeout instead
       setTimeout(() => {
         console.log('test')
         this.$store.dispatch('itinerary/RemoveFromList', this.arrayIndex)
