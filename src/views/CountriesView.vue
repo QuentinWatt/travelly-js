@@ -1,10 +1,10 @@
 <template>
-  <div class="bg-white p-5 rounded">
+  <div class="bg-white p-5 rounded border">
     <h1 class="font-bold text-2xl">Countries</h1>
     <search-countries
       @showSearch="showSearchList"
       @hideSearch="hideSearchList"
-      class="mt-3"
+      class="mt-3 mb-3"
     />
     <search-list
       v-if="useSearchList"

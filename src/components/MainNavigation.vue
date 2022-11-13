@@ -9,9 +9,18 @@
           Travelly
         </router-link>
       </div>
-      <div>
-        <router-link to="/" class="mr-2">Countries</router-link>
-        <router-link to="/travel-list">Travel List</router-link>
+      <div class="flex items-center">
+        <base-icon
+          class="text-2xl md:hidden"
+        />
+        <ul class="hidden md:flex items-center w-full">
+          <li>
+            <router-link to="/" class="mr-2">Countries</router-link>
+          </li>
+          <li>
+            <router-link to="/travel-list">Travel List</router-link>
+          </li>
+        </ul>
       </div>
     </nav>
   </div>
