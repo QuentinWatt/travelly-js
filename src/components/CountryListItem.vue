@@ -9,27 +9,33 @@
       </span>
     </div>
     <div>
-      <button
+      <base-button
         v-if="!myList"
         @click="addToList"
-        class="rounded bg-blue-500 text-white flex items-center justify-center h-8 w-8"
+        :loading="loading"
+        width="w-32"
       >
-        +
-      </button>
-      <button
+        Add to my list
+      </base-button>
+      <base-button
         v-if="myList"
         @click="remove"
-        class="rounded bg-red-500 text-white flex items-center justify-center h-8 w-8"
+        :loading="loading"
+        bg-color="bg-red-500"
+        width="w-32"
       >
-        -
-      </button>
+        Remove
+      </base-button>
     </div>
   </div>
 </template>
 
 <script>
+import BaseButton from "@/components/BaseButton.vue";
+
 export default {
   name: "CountryListItem",
+  components: { BaseButton },
   props: {
     country: {
       type: Object,
@@ -43,12 +49,27 @@ export default {
       default: null,
     }
   },
+  data(){
+    return {
+      loading: false
+    }
+  },
   methods: {
     addToList(){
+      this.loading = true
       this.$store.dispatch('itinerary/AddCountry', this.country)
+
+      setInterval(() => {
+        this.loading = false
+      }, 300)
     },
     remove(){
+      this.loading = true
       this.$store.dispatch('itinerary/RemoveFromList', this.arrayIndex)
+
+      setInterval(() => {
+        this.loading = false
+      }, 300)
     }
   }
 };
