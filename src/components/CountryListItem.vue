@@ -1,17 +1,55 @@
 <template>
-  <div class="border border-black rounded p-3 flex justify-between items-center">
+  <div
+    @click="toggleDetails"
+    class="border border-black rounded p-3 md:flex justify-between"
+  >
     <div v-if="country">
-      <span class="font-bold text mr-2">
-        {{ country.name.common }}
+      <span class="flex text-xl">
+        <span class="font-bold mr-2">
+          {{ country.name.common }}
+        </span>
+        <span>
+          ({{ country.region }})
+        </span>
       </span>
-      <span>
-        {{ country.region }}
-      </span>
+
+      <Transition>
+        <div
+          v-if="showDetails"
+          class="w-full"
+        >
+          <div class="flex items-center">
+        <span class="mr-3">
+          Flag:
+        </span>
+            <span class="text-2xl">
+          {{ country.flag }}
+        </span>
+          </div>
+          <div class="flex items-center">
+        <span class="mr-3">
+          Subregion:
+        </span>
+            <span>
+         {{ country.subregion }}
+        </span>
+          </div>
+          <div class="flex items-center">
+        <span class="mr-3">
+          Co-ordinates:
+        </span>
+            <span>
+         {{ country.latlng[0] }},{{ country.latlng[1] }}
+        </span>
+          </div>
+        </div>
+      </Transition>
     </div>
-    <div>
+
+    <div class="mt-3 md:mt-0">
       <base-button
         v-if="!myList"
-        @click="addToList"
+        @click.stop="addToList"
         :loading="loading"
         width="w-32"
       >
@@ -19,7 +57,7 @@
       </base-button>
       <base-button
         v-if="myList"
-        @click="remove"
+        @click.stop="remove"
         :loading="loading"
         bg-color="bg-red-500"
         width="w-32"
@@ -51,27 +89,28 @@ export default {
   },
   data(){
     return {
-      loading: false
+      loading: false,
+      showDetails: false
     }
   },
   methods: {
+    toggleDetails(){
+      this.showDetails = !this.showDetails
+    },
     addToList(){
       this.loading = true
       this.$store.dispatch('itinerary/AddCountry', this.country)
 
-      // Would ordinarily use a promise return but this happens so fast on local
-      // Decided to use a timeout instead
-      setTimeout(() => {
+      // Only to fake some user interactivity
+      setInterval(() => {
         this.loading = false
       }, 300)
     },
     remove(){
       this.loading = true
 
-      // Would ordinarily use a promise return but this happens so fast on local
-      // Decided to use a timeout instead
-      setTimeout(() => {
-        console.log('test')
+      // Only to fake some user interactivity
+      setInterval(() => {
         this.$store.dispatch('itinerary/RemoveFromList', this.arrayIndex)
         this.loading = false
       }, 300)
