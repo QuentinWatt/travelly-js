@@ -21,14 +21,6 @@
           icon="fa-xmark"
           class="text-2xl"
         />
-<!--        <ul class="hidden md:flex items-center w-full">-->
-<!--          <li>-->
-<!--            <router-link to="/" class="mr-2">Countries</router-link>-->
-<!--          </li>-->
-<!--          <li>-->
-<!--            <router-link to="/travel-list">Travel List</router-link>-->
-<!--          </li>-->
-<!--        </ul>-->
       </div>
     </nav>
   </div>
