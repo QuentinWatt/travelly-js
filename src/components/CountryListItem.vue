@@ -108,25 +108,13 @@ export default {
     },
     remove(){
       this.loading = true
-      this.$store.dispatch('itinerary/RemoveFromList', this.arrayIndex)
 
       // Only to fake some user interactivity
       setInterval(() => {
+        this.$store.dispatch('itinerary/RemoveFromList', this.arrayIndex)
         this.loading = false
       }, 300)
     }
   }
 };
 </script>
-
-<style scoped>
-.v-enter-active,
-.v-leave-active {
-  transition: all 300ms ease;
-}
-
-.v-enter-from,
-.v-leave-to {
-  transform: translateY(-20px) scaleY(0);
-}
-</style>
