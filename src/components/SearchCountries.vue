@@ -37,7 +37,7 @@ export default {
       }
     },
     handleSearchResults(){
-      if(!this.query.length <= 0){
+      if(!this.query.length >= 2){
         this.clearSearchResults()
       }
     }
