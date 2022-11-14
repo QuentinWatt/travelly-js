@@ -10,8 +10,8 @@
     <list-pagination
       :currentPage="currentPage"
       :lastPage="lastPageNumber"
-      @pageNext="nextPage"
-      @pagePrev="previousPage"
+      :nextPageNumber="nextPageNumber"
+      :previousPageNumber="previousPageNumber"
     />
   </div>
 </template>
@@ -30,7 +30,9 @@ export default {
     ]),
     ...mapGetters('countries',[
       'getPageItems',
-      'lastPageNumber'
+      'lastPageNumber',
+      'nextPageNumber',
+      'previousPageNumber',
     ])
   },
   methods: {
