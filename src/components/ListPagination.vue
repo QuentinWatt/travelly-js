@@ -1,22 +1,22 @@
 <template>
   <div class="mt-2 flex justify-between">
-    <button
-      @click="$emit('pagePrev')"
+    <router-link
+      :to="{name: 'home', query: { ...$route.query, page: previousPageNumber }}"
       :disabled="currentPage <= 1"
       :class="{'text-blue-500' : currentPage > 1}"
     >
       Prev
-    </button>
+    </router-link>
 
     <nav>
       <ul class="flex justify-between items-center">
-        <li v-if="prevPageNumber >= 1">
-          <a
-            @click="$emit('pagePrev')"
+        <li v-if="previousPageNumber >= 1">
+          <router-link
+            :to="{name: 'home', query: { ...$route.query, page: previousPageNumber }}"
             class="text-blue-500"
           >
-            {{ prevPageNumber }}
-          </a>
+            {{ previousPageNumber }}
+          </router-link>
         </li>
 
         <li class="mx-3 text-gray-500">
@@ -24,26 +24,30 @@
         </li>
 
         <li v-if="nextPageNumber <= lastPage">
-          <a
-            @click="$emit('pageNext')"
+          <router-link
+            :to="{name: 'home', query: { ...$router.query, page: nextPageNumber }}"
             class="text-blue-500"
           >
             {{ nextPageNumber }}
-          </a>
+          </router-link>
         </li>
       </ul>
     </nav>
 
-    <button
-      @click="$emit('pageNext')"
+    <router-link
+      :to="{name: 'home', query: { ...$router.query, page: nextPageNumber }}"
+      :disabled="currentPage >= lastPageNumber"
       :class="{'text-blue-500' : nextPageNumber <= lastPage}"
     >
       Next
-    </button>
+    </router-link>
+
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "ListPagination",
   props:{
@@ -55,12 +59,11 @@ export default {
     }
   },
   computed: {
-    prevPageNumber(){
-      return this.currentPage - 1;
-    },
-    nextPageNumber(){
-      return this.currentPage + 1;
-    },
-  }
+    ...mapGetters('countries',[
+      'lastPageNumber',
+      'nextPageNumber',
+      'previousPageNumber'
+    ])
+  },
 };
 </script>

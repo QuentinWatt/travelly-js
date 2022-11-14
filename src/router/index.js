@@ -27,8 +27,14 @@ const router = createRouter({
   routes,
 });
 
+router.beforeEach(async(to) => {
+  if(to.name === 'home'){
+    await store.dispatch('countries/setQuery', to.query)
+  }
+})
+
 router.beforeResolve(async () => {
   await store.dispatch('mobileMenu/closeMenu')
-})
+});
 
 export default router;

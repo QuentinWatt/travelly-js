@@ -47,7 +47,13 @@ const countries = {
       commit("SET_PAGE_INDEX", {
         currentPage
       })
-    }
+    },
+    setQuery({commit}, { page }){
+      let currentPage = page ? page : 1
+      commit("SET_PAGE_INDEX", {
+        currentPage
+      })
+    },
   },
   getters: {
     getPageItems: (state) => {
@@ -56,7 +62,14 @@ const countries = {
     },
     lastPageNumber: (state) => {
       return state.list.length / state.perPage
-    }
+    },
+    nextPageNumber: (state) => {
+      return Number(state.currentPage) + 1;
+    },
+    previousPageNumber: (state) => {
+      const previousPage = Number(state.currentPage) - 1
+      return !previousPage <= 0 ? previousPage : null;
+    },
   },
 };
 
