@@ -11,12 +11,12 @@
     <nav>
       <ul class="flex justify-between items-center">
         <li v-if="prevPageNumber >= 1">
-          <a
-            @click="$emit('pagePrev')"
+          <router-link
+            :to="{name: 'home', query: { ...$route.query, page: prevPageNumber }}"
             class="text-blue-500"
           >
             {{ prevPageNumber }}
-          </a>
+          </router-link>
         </li>
 
         <li class="mx-3 text-gray-500">
@@ -24,12 +24,12 @@
         </li>
 
         <li v-if="nextPageNumber <= lastPage">
-          <a
-            @click="$emit('pageNext')"
+          <router-link
+            :to="{name: 'home', query: { ...$router.query, page: nextPageNumber }}"
             class="text-blue-500"
           >
             {{ nextPageNumber }}
-          </a>
+          </router-link>
         </li>
       </ul>
     </nav>
@@ -40,6 +40,7 @@
     >
       Next
     </button>
+
   </div>
 </template>
 
@@ -61,6 +62,6 @@ export default {
     nextPageNumber(){
       return this.currentPage + 1;
     },
-  }
+  },
 };
 </script>
