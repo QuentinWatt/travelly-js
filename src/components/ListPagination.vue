@@ -1,12 +1,15 @@
 <template>
   <div class="mt-2 flex justify-between">
-    <router-link
-      :to="{name: 'home', query: { ...$route.query, page: previousPageNumber }}"
-      :disabled="currentPage <= 1"
-      :class="{'text-blue-500' : currentPage > 1}"
-    >
-      Prev
-    </router-link>
+    <span>
+      <router-link
+        v-if="previousPageNumber"
+        :to="{name: 'home', query: { ...$route.query, page: previousPageNumber }}"
+        :disabled="currentPage <= 1"
+        class="text-blue-500"
+      >
+        Prev
+      </router-link>
+    </span>
 
     <nav>
       <ul class="flex justify-between items-center">
@@ -23,9 +26,9 @@
           {{ currentPage }}
         </li>
 
-        <li v-if="nextPageNumber <= lastPage">
+        <li v-if="nextPageNumber">
           <router-link
-            :to="{name: 'home', query: { ...$router.query, page: nextPageNumber }}"
+            :to="{name: 'home', query: { ...$route.query, page: nextPageNumber }}"
             class="text-blue-500"
           >
             {{ nextPageNumber }}
@@ -34,36 +37,36 @@
       </ul>
     </nav>
 
-    <router-link
-      :to="{name: 'home', query: { ...$router.query, page: nextPageNumber }}"
-      :disabled="currentPage >= lastPageNumber"
-      :class="{'text-blue-500' : nextPageNumber <= lastPage}"
-    >
-      Next
-    </router-link>
+    <span>
+      <router-link
+        v-if="nextPageNumber"
+        :to="{name: 'home', query: { ...$route.query, page: nextPageNumber }}"
+        :disabled="nextPageNumber <= lastPageNumber"
+        class="text-blue-500"
+      >
+        Next
+      </router-link>
+    </span>
 
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-
 export default {
   name: "ListPagination",
   props:{
-    lastPage: {
-      type: Number
+    lastPageNumber: {
+      type: Number,
+    },
+    nextPageNumber: {
+      type: Number,
+    },
+    previousPageNumber: {
+      type: Number,
     },
     currentPage: {
-      type: Number
+      type: Number,
     }
-  },
-  computed: {
-    ...mapGetters('countries',[
-      'lastPageNumber',
-      'nextPageNumber',
-      'previousPageNumber'
-    ])
   },
 };
 </script>
